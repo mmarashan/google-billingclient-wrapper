@@ -1,3 +1,2 @@
 rootProject.name = "GoogleBillingClientWrapper"
-include ':app',
-        ':google-billingclient-wrapper'
+include ':google-billingclient-wrapper'
