@@ -1,4 +1,4 @@
-package ru.volgadev.googlebillingclientwrapper
+package ru.volgadev.googlebillingclientwrapperapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
