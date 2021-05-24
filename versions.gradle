@@ -5,6 +5,5 @@ versions.targetSdkVersion = 29
 versions.compileSdkVersion = 29
 
 versions.appcompat = "1.3.0"
-versions.corektx = "1.5.0-rc02"
 versions.billingclient = "4.0.0"
 versions.coroutines = "1.4.2"

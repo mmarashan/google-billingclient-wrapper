@@ -2,10 +2,7 @@ package ru.volgadev.googlebillingclientwrapper.impl
 
 import android.content.Context
 import android.util.Log
-import com.android.billingclient.api.BillingClient
-import com.android.billingclient.api.BillingClientStateListener
-import com.android.billingclient.api.BillingResult
-import com.android.billingclient.api.SkuDetailsParams
+import com.android.billingclient.api.*
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -64,19 +61,21 @@ internal class PaymentManagerImpl(
     override fun requestPayment(skuId: String) {
         val item = items[skuId]
         if (item == null) {
-            Log.e(TAG,"Call paymentRequest() for not exist item")
+            Log.e(TAG, "Call paymentRequest() for not exist item")
             return
         }
+        requestPayment(item.skuDetails.packToBillingFlowParams())
+    }
 
+    override fun requestPayment(billingFlowParams: BillingFlowParams) {
         BillingProcessorServiceLocator.register(
             billingProcessor = billingClient,
-            params = item.skuDetails.packToBillingFlowParams()
+            params = billingFlowParams
         )
-
         TransparentBillingClientActivity.launch(context)
     }
 
-    override fun consumePurchase(skuId: String): Boolean {
+    override fun consumePurchase(skuId: String) {
         Log.d(TAG, "consumePurchase($skuId)")
         val item = items[skuId]
         val purchase = item?.purchase
@@ -85,13 +84,15 @@ internal class PaymentManagerImpl(
             val consumeParams = purchase.packToConsumeParams()
 
             billingClient.consumeAsync(consumeParams) { billingResult, _ ->
-                if (billingResult.isOk()) {
-                    Log.d(TAG, "consumePurchase($skuId) OK")
-                    updateState(item.skuType)
-                }
+                if (billingResult.isOk()) updateState(item.skuType)
             }
         }
-        return false
+    }
+
+    override fun consumePurchase(consumeParams: ConsumeParams) {
+        billingClient.consumeAsync(consumeParams) { billingResult, _ ->
+            if (billingResult.isOk()) updateState()
+        }
     }
 
     override fun dispose() {
