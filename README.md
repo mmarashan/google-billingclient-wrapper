@@ -1,6 +1,7 @@
 ## Google Billing Client Wrapper Lib
-____
+
 [![](https://jitpack.io/v/mmarashan/google-billingclient-wrapper.svg)](https://jitpack.io/#mmarashan/google-billingclient-wrapper)
+____
 Wrapper for a Google Billing Client library that simplifies in-app payments for purchases and subscriptions
 At start face with [Google Play Billing Library guides](https://developer.android.com/google/play/billing/integrate)
 
