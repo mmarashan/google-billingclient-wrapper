@@ -13,18 +13,18 @@ At start face with [Google Play Billing Library guides](https://developer.androi
 Step 1. Add the JitPack repository to your build file 
 Add it in your root build.gradle at the end of repositories:
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+    allprojects {
+        repositories {
+            ...
+            maven { url 'https://jitpack.io' }
+        }
+    }
 ```
 Step 2. Add the dependency
 ```
-	dependencies {
-	        implementation 'com.github.mmarashan:google-billingclient-wrapper:0.0.3'
-	}
+    dependencies {
+            implementation 'com.github.mmarashan:google-billingclient-wrapper:0.0.3'
+    }
 ```
 
 ### Code example
