@@ -8,20 +8,18 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingFlowParams
 import ru.volgadev.googlebillingclientwrapper.R
 
+/**
+ * Transparent Activity calling [BillingClient.launchBillingFlow]
+ */
 internal class TransparentBillingClientActivity : AppCompatActivity() {
-
-    private val billingClient: BillingClient by lazy { BillingProcessorServiceLocator.get() }
-    private val billingFlowParams: BillingFlowParams by lazy { BillingProcessorServiceLocator.getParams() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.transparent_layout)
-        launchBillingFlow()
-        finish()
-    }
-
-    private fun launchBillingFlow() {
+        val billingFlowParams: BillingFlowParams = BillingProcessorServiceLocator.getParams()
+        val billingClient: BillingClient = BillingProcessorServiceLocator.get()
         billingClient.launchBillingFlow(this, billingFlowParams)
+        finish()
     }
 
     companion object {

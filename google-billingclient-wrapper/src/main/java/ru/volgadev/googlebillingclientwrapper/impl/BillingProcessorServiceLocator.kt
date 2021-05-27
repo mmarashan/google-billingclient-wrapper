@@ -3,7 +3,11 @@ package ru.volgadev.googlebillingclientwrapper.impl
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingFlowParams
 
+/**
+ * Simple service locator that hold links to [BillingClient] and [BillingFlowParams]
+ */
 internal object BillingProcessorServiceLocator {
+
     private var billingClient: BillingClient? = null
     private var billingFlowParams: BillingFlowParams? = null
 
@@ -13,21 +17,11 @@ internal object BillingProcessorServiceLocator {
     }
 
     fun get(): BillingClient {
-        val bp = billingClient
-        if (bp != null) {
-            return bp
-        } else {
-            throw IllegalStateException("billingProcessor not registered!")
-        }
+        return billingClient ?: throw IllegalStateException("billingProcessor not registered!")
     }
 
     fun getParams(): BillingFlowParams {
-        val bp = billingFlowParams
-        if (bp != null) {
-            return bp
-        } else {
-            throw IllegalStateException("billingProcessor not registered!")
-        }
+        return billingFlowParams ?: throw IllegalStateException("billingProcessor not registered!")
     }
 
     fun clear() {
