@@ -2,17 +2,17 @@
 
 [![](https://jitpack.io/v/mmarashan/google-billingclient-wrapper.svg)](https://jitpack.io/#mmarashan/google-billingclient-wrapper)
 ____
-Wrapper for a Google Billing Client library that simplifies in-app payments for purchases and subscriptions
+Wrapper for a Google Billing Client library to simplify in-app payments for purchases and subscriptions
 At start face with [Google Play Billing Library guides](https://developer.android.com/google/play/billing/integrate)
 
-### Advantages
-1. Coroutines SharedFlow-based api for collect updates about in-app products and payment results  
-2. Launch payment flow from your data-layer. You no longer need to bring payments dependencies to your Activity
-3. You also have link to active BillingClient from original library for extending and customisation
+### Advantage
+1. Coroutines SharedFlow-based API for collecting updates about in-app products and payment results  
+2. Launch a payment flow from your data layer. There is no more need to bring payments dependencies to your Activity
+3. You also have a link to active BillingClient from the original library for extending and customization
 
 ### Add the dependency
-Step 1. Add the JitPack repository to your build file 
-Add it in your root build.gradle at the end of repositories:
+Step 1. Add this JitPack repository to your build file 
+Add it to your root build.gradle at the end of repositories:
 ```
     allprojects {
         repositories {
